@@ -2191,8 +2191,11 @@ static int hls_read_packet(AVFormatContext *s, AVPacket *pkt)
             if (minplaylist < 0) {
                 minplaylist = i;
             } else {
-                int64_t dts     =    pls->pkt.dts;
-                int64_t mindts  = minpls->pkt.dts;
+                // TODO: HLS6 fix
+                // int64_t dts     =    pls->pkt.dts;
+                // int64_t mindts  = minpls->pkt.dts;
+                int64_t dts     = pls->pkt.dts != AV_NOPTS_VALUE ? pls->pkt.dts : pls->pkt.pts;
+                int64_t mindts  = minpls->pkt.dts != AV_NOPTS_VALUE ? minpls->pkt.dts : minpls->pkt.pts;
 
                 if (dts == AV_NOPTS_VALUE ||
                     (mindts != AV_NOPTS_VALUE && compare_ts_with_wrapdetect(dts, pls, mindts, minpls) < 0))
