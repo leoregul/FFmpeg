@@ -5392,24 +5392,30 @@ static int check_pkt(AVFormatContext *s, AVPacket *pkt)
     int64_t ref;
     uint64_t duration;
 
+    int z = 0;
     if (trk->entry) {
         ref = trk->cluster[trk->entry - 1].dts;
     } else if (   trk->start_dts != AV_NOPTS_VALUE
                && !trk->frag_discont) {
         ref = trk->start_dts + trk->track_duration;
-    } else
+        z = 1;
+    } else {
         ref = pkt->dts; // Skip tests for the first packet
+        z = 2;
+    }
 
+    int x = 0;
     if (trk->dts_shift != AV_NOPTS_VALUE) {
         /* With negative CTS offsets we have set an offset to the DTS,
          * reverse this for the check. */
         ref -= trk->dts_shift;
+        x = 1;
     }
 
     duration = pkt->dts - ref;
     if (pkt->dts < ref || duration >= INT_MAX) {
-        av_log(s, AV_LOG_ERROR, "Application provided duration: %"PRId64" / timestamp: %"PRId64" is out of range for mov/mp4 format\n",
-            duration, pkt->dts
+        av_log(s, AV_LOG_ERROR, "Application provided duration: %"PRId64" / timestamp: %"PRId64" is out of range for mov/mp4 format. z=%d, x=%d, entry=%d, start_dts=%"PRId64", track_duration=%"PRId64", dts_shift=%"PRId64", frag_discont=%d\n",
+            duration, pkt->dts, z, x, trk->entry, trk->start_dts, trk->track_duration, trk->dts_shift, trk->frag_discont
         );
 
         pkt->dts = ref + 1;
