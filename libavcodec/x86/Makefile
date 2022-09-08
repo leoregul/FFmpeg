@@ -1,3 +1,7 @@
+# HEADERS_SUBDIR = x86
+
+# HEADERS += x86/mathops.h                                                \
+
 OBJS                                   += x86/constants.o               \
 
 # subsystems

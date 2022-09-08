@@ -7,6 +7,7 @@ HEADERS = adler32.h                                                     \
           attributes.h                                                  \
           audio_fifo.h                                                  \
           avassert.h                                                    \
+          avconfig.h                                                    \
           avstring.h                                                    \
           avutil.h                                                      \
           base64.h                                                      \
@@ -28,6 +29,7 @@ HEADERS = adler32.h                                                     \
           encryption_info.h                                             \
           error.h                                                       \
           eval.h                                                        \
+          ffversion.h                                                   \
           fifo.h                                                        \
           file.h                                                        \
           frame.h                                                       \
@@ -92,8 +94,8 @@ ARCH_HEADERS = bswap.h                                                  \
                intreadwrite.h                                           \
                timer.h                                                  \
 
-BUILT_HEADERS = avconfig.h                                              \
-                ffversion.h
+# BUILT_HEADERS = avconfig.h                                              \
+#                 ffversion.h
 
 OBJS = adler32.o                                                        \
        aes.o                                                            \

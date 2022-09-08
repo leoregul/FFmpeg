@@ -1,3 +1,7 @@
+# HEADERS_SUBDIR = x86
+
+# HEADERS += x86/asm.h                                                    \
+
 OBJS += x86/cpu.o                                                       \
         x86/fixed_dsp_init.o                                            \
         x86/float_dsp_init.o                                            \

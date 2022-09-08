@@ -7,6 +7,7 @@ HEADERS = ac3_parser.h                                                  \
           avdct.h                                                       \
           avfft.h                                                       \
           bsf.h                                                         \
+          bytestream.h                                                  \
           codec.h                                                       \
           codec_desc.h                                                  \
           codec_id.h                                                    \
@@ -15,7 +16,9 @@ HEADERS = ac3_parser.h                                                  \
           dirac.h                                                       \
           dv_profile.h                                                  \
           dxva2.h                                                       \
+          get_bits.h                                                    \
           jni.h                                                         \
+          mathops.h                                                     \
           mediacodec.h                                                  \
           packet.h                                                      \
           qsv.h                                                         \
@@ -23,6 +26,7 @@ HEADERS = ac3_parser.h                                                  \
           vdpau.h                                                       \
           version.h                                                     \
           videotoolbox.h                                                \
+          vlc.h                                                         \
           vorbis_parser.h                                               \
           xvmc.h                                                        \
 
