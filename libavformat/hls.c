@@ -38,6 +38,7 @@
 #include "internal.h"
 #include "avio_internal.h"
 #include "id3v2.h"
+#include "scte_35.h"
 
 #define INITIAL_BUFFER_SIZE 32768
 
