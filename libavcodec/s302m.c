@@ -60,7 +60,7 @@ static int s302m_parse_frame_header(AVCodecContext *avctx, const uint8_t *buf,
     bits       = ((h >>  4) & 0x0003) * 4 + 16;
 
     if (AES3_HEADER_LEN + frame_size != buf_size || bits > 24) {
-        av_log(avctx, AV_LOG_ERROR, "frame has invalid header\n");
+        av_log(avctx, AV_LOG_ERROR, "frame has invalid header. buf_size=%d, frame_size=%d, bits=%d\n", buf_size, frame_size, bits);
         return AVERROR_INVALIDDATA;
     }
 
@@ -93,6 +93,8 @@ static int s302m_decode_frame(AVCodecContext *avctx, void *data,
                               int *got_frame_ptr, AVPacket *avpkt)
 {
     S302Context *s = avctx->priv_data;
+    s->non_pcm_mode = 0;
+    
     AVFrame *frame     = data;
     const uint8_t *buf = avpkt->data;
     int buf_size       = avpkt->size;
